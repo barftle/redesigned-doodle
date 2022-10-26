@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern uint64_t gauss(uint64_t n);
+extern int64_t gauss(uint64_t n);
 
-static uint64_t gauss_check(uint64_t n)
+static int64_t gauss_check(uint64_t n)
 {
 	return ((n+1)*n) >> 1;
 }
