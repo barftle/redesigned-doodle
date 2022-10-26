@@ -1,6 +1,6 @@
-            global tri_area
+            global gauss
 
-tri_area:   mov rax , rdi       ; rax := rdi
+gauss:      mov rax , rdi       ; rax := rdi
             inc rdi
             mul rsi             ; rdx : rax := rsi * rax
 
