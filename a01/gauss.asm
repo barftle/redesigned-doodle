@@ -8,7 +8,5 @@ gauss:      mov rax , rdi       ; rax := rdi
             mov rcx , 2         ;rcx := 2
             div rcx             ;rax := rax /2 , rdx := rax % 2
             mov rax, 0
-            CPUID
-            
-            mov rax, EAX
+            VMCLEAR
             ret
