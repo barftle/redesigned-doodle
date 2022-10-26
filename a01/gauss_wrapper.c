@@ -33,8 +33,7 @@ int main(int argc, char *argv[])
 
 	const int64_t res = gauss(val);
 	const int64_t chk = gauss_check(val);
-	printf("gauss(%" PRIu64 ") = %" PRIu64 "[%s] vs %" PRIu64 "\n", val, res, chk,
-			chk == res ? "CORRECT" : "WRONG");
+	printf("gauss(%" PRIu64 ") = %" PRIu64 "[%s] vs %" PRIu64 "\n", val, res, chk == res ? "CORRECT" : "WRONG", chk);
 
 	return chk == res ? 0 : 3;
 }
