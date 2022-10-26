@@ -7,7 +7,7 @@ program=gauss
 obj-y=$(program).o gauss_wrapper.o
 
 nasm-file: nasm-file.asm
-		nasm -f elf64 -o nasm-file.o nasm-file.asm
+		nasm -f elf64 -o gauss.o nasm-file.asm
 
 all: $(program)
 $(program): $(obj-y)
