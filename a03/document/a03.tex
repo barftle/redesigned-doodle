@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{german}
+\usepackage{graphicx}
+%\usepackage{units}
+\usepackage[locale=DE]{siunitx}
+\usepackage{setspace}
+\usepackage{threeparttable}
+%\usepackage{url} 
+\usepackage[hyphens]{url}
+\usepackage{pdfpages}
+\usepackage{ulem}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{polynom}
+\usepackage{enumitem}
+%\usepackage{ipe}
+\usepackage{scrlayer-scrpage}
+\usepackage{qtree}
+\usepackage{cancel}
+
+\usepackage{tikz}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\parindent0mm
+\sloppy
+
+% Typesetting code, setup for C by default
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{default}{%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  basicstyle=\ttfamily,
+  backgroundcolor=\color{gray!8},
+  commentstyle=\color{green!60!blue}\itshape,
+  keywordstyle=\color{blue},
+  stringstyle=\color{blue!30!red},
+  tabsize=4,
+  keepspaces=true,
+}
+\lstset{style=default, language=C}
+
+% Basic data
+\newcommand{\VORLESUNG}{TI2: Rechnerarchitektur}
+\newcommand{\STUDENTS}{Bruno Stendal, Martin Baer, Lukas und Christian Schäfer}
+\newcommand{\STAFF}{Bernadette Keßler}
+\newcommand{\ASSIGNMENT}{2}
+\newcommand{\DELIVER}{Freitag, den 18.11.2022, 10:15 Uhr}
+
+
+% Arbitrary packages and settings
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\cat}{++}
+\newcommand{\lam}{\lambda}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\half}[1]{\frac{#1}{2}}
+\newcommand{\punkte}[1]{{\small{ }(#1 Punkte)}}
+
+\newcommand{\aufgabe}[1]{\item{\bf #1}}
+
+\begin{document}
+% Document title
+\ofoot{\pagemark}
+\begin{center}
+    Abgabe von \STUDENTS{}\\
+ \ASSIGNMENT{}. Aufgabenblatt  zum Kurs 
+\vspace*{0.2cm}
+
+{\Large \VORLESUNG{}}
+
+{\small von \STAFF{} \\ bis \DELIVER{}.}
+\vspace*{0.5cm}\\
+\end{center}
+\begin{enumerate}
+\setcounter{enumi}{0}
+\aufgabe{}
+\aufgabe{}
+\end{enumerate}
+\end{document} 
