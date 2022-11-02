@@ -7,7 +7,7 @@
 \usepackage{amsthm}
 \usepackage{german}
 \usepackage{graphicx}
-\usepackage{units}
+%\usepackage{units}
 \usepackage[locale=DE]{siunitx}
 \usepackage{setspace}
 \usepackage{threeparttable}
@@ -49,7 +49,7 @@
 
 % Basic data
 \newcommand{\VORLESUNG}{TI2: Rechnerarchitektur}
-\newcommand{\STUDENTS}{Bruno Stendal und Christian Schäfer}
+\newcommand{\STUDENTS}{Bruno Stendal, Martin Baer, Lukas und Christian Schäfer}
 \newcommand{\STAFF}{Bernadette Keßler}
 \newcommand{\ASSIGNMENT}{1}
 \newcommand{\DELIVER}{Freitag, den 11.11.2022, 10:15 Uhr}
@@ -82,10 +82,18 @@
 \end{center}
 \begin{enumerate}
 \setcounter{enumi}{0}
-\aufgabe{}
+\aufgabe{}Antworten auf die Fragen:
 \begin{enumerate}
-\item[1.]
+\item[1.] Ein general - purpose Computer ist ein Computer, der nur einen Arbeitsspeicher hat, der Operatoren (Programmebefehle) und Daten gleichermaßen speichert und sie nicht unterscheidet. Nur bei der Interpretation des gespeicherten wird entschieden ob er ein Operator ist oder eine Datei. Diese Architektur ist anfällig auf Viren die sich als Operator ausgeben und ausgeführt werden, da sie so interpretiert werden kann.
+\item[2.] Die Sichtweise ist so zu verstehen, dass Programmebefehle wie auch Daten im selben Arbeitsspeicher gespeichert werden. Sie werden nicht unterschieden und auch nicht in verschiedene Arbeitsspeicher gespeichert. Generell ist es so zu verstehen, dass ein Programmbefehle ein Programm darstellt, die gespeichert werden und von der CPU aufgerufen und danach ausgeführt werden.
+\item[3.] Die Von-Neumann-Architektur setzt sich aus dem CPU, Arbeitsspeicher, I/O Unit und Bussystem zusammen. Dabei hat das CPU ein Rechnerwerk (ALU) und ein Steuerwerk (Control Unit).
+\item[4.] Der Datenprozessor führt Befehle aus und speichert die Ergebnisse in Registern die dann über das MBR im Hauptspeicher in bestimmte Adresse gespeichert werden, damit der Befehlsprozessor drauf zugreifen kann, wenn nötig. Der Datenprozessor besteht aus den Komponenten  Register, ALU und MBR. Die Register im Prozessor sind zuständig für die Zwischenspeicherung von Ergebnissen nachdem die Befehle im ALU ausgeführt worden sind, diese Zwischengespeicherten. Der ALU ist verantwortlich für die Ausführung(Berechnung) der Befehle, wobei die Befehle erst vom MBR im Hauptspeicher ausgelesen werden und die Daten zum ALU mit dem Datenbus geschickt werden. Der MBR ist verantwortlich für die Kommunikation mit dem Hauptspeicher. Der MBR liest die Daten von der Adresse im Hauptspeicher, wobei die Adresse vom MAR aus dem Befehlsprozessor übermittelt wurde. Das passiert, damit der MBR weiß aus welcher Adresse er die Daten an das ALU übermitteln kann, zur Ausführung(Berechnung).
+\item[5.]
+\item[6.]
+\item[7.]
+\item[8.]
+\item[9.]
 \end{enumerate}
-\aufgabe{} Wird als asm-Datei  
+\aufgabe{} Wird als asm-Datei abgegeben.  
 \end{enumerate}
 \end{document} 
