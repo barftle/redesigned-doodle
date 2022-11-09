@@ -1,3 +1,4 @@
+;Bruno Stendal, Martin Baer, Lukas Gewinner und Christian Schäfer          
             global gauss
 
 gauss:      mov rax , rdi       ; rax := rdi
