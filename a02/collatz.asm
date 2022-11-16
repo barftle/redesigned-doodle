@@ -8,7 +8,7 @@ collatz:
 	MOV rcx,0 ; das ist k das am Anfang 0 ist.
   .start:
 	CMP rdi, 1 	; Paramenter 1 wird mit 1 Verglichen.
-	JA .if  	; Wenn Parameter 1 groeßer 1, dann spring zu 
+	JA .if  	; Wenn Parameter 1 groesser 1, dann spring zu 
 				; .if sonst nicht.
 	MOV rax,rcx  ; rcx wird nach rax getan, damit k ausgegeben
 				 ; wird.
