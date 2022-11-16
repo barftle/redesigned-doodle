@@ -23,7 +23,7 @@ collatz:
 				; Funktion _else sonst nicht.
 	SHR rdi,1 	; rdi wird um zwei geteilt.
 	INC rcx 	; rcx = rcx + 1 (rcx entspricht k)
-	JMP .start 	; springt zur Funktion .start zurück.
+	JMP .start 	; springt zur Funktion .start zurueck.
 	
 	
   .else:
@@ -34,5 +34,5 @@ collatz:
 	MOV rdi,rax ; rax wird nach rdi getan damit die Schleife 
 				; funktioniert.
 	INC rcx 	; rcx = rcx + 1 (rcx entspricht dem k)
-	JMP .start 	; springt zurück zur Funktion .start.
+	JMP .start 	; springt zurueck zur Funktion .start.
 	
