@@ -45,7 +45,7 @@
   tabsize=4,
   keepspaces=true,
 }
-\lstset{style=default, language=C}
+\lstset{style=default, language=Assembler}
 
 % Basic data
 \newcommand{\VORLESUNG}{TI2: Rechnerarchitektur}
@@ -53,6 +53,7 @@
 \newcommand{\STAFF}{Bernadette Keßler}
 \newcommand{\ASSIGNMENT}{2}
 \newcommand{\DELIVER}{Freitag, den 18.11.2022, 10:15 Uhr}
+\setcounter{secnumdepth}{0}
 
 
 % Arbitrary packages and settings
@@ -80,9 +81,21 @@
 {\small von \STAFF{} \\ bis \DELIVER{}.}
 \vspace*{0.5cm}\\
 \end{center}
-\begin{enumerate}
-\setcounter{enumi}{0}
-\aufgabe{}
-\aufgabe{}
-\end{enumerate}
+\section{Zahlenbasis}
+
+\aufgabe{Lösen die folgenden Umrechnungen mit erkennbarem Lösungsweg und kommentieren Sie ggf. Ihre Annahmen oder Probleme.}
+\begin{center}
+        \includegraphics[width = 16cm,angle = 270]{TI2_2/A1_1.jpeg}
+        \includegraphics[width = 20cm,angle = 270]{TI2_2/A1_2.jpeg}
+    \end{center}
+\newpage
+\section{Pseudocode}
+\aufgabe{}Übersetzung des C Codes in Pseudo Assembler
+\lstinputlisting[language=C]{pseudocode_1.c}
+\\
+\lstinputlisting[language=C]{pseudocode_2.c}
+\newpage
+\section{Collatz Conjecture}
+\aufgabe{}Programm Code wie folgt: 
+\lstinputlisting[language=Assembler]{collatz.asm}
 \end{document} 
