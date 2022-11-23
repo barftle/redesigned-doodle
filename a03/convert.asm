@@ -2,12 +2,12 @@
             global strToInt
 
 strToInt:   
-    mov rcx 0;
+    mov rcx, 0;
   .loop:
-    mov al , [rdi+rcx];
-    sub rax 48;
+    mov al, [rdi+rcx];
+    sub rax, 48;
     inc rcx;
-    cmp [rdi+rcx] 0;
+    cmp [rdi+rcx], 0;
     je .end;
     jne .mult;
   .mult
