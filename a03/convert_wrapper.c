@@ -19,7 +19,7 @@ static bool intToStr_unimplemented;
 
 int64_t strToInt(const char *str, uint8_t base)
 {
-	strToInt_unimplemented = true;
+	strToInt_unimplemented = false;
 
 	/* invalid base */
 	if (base <= 1 || base > 36) {
@@ -80,7 +80,7 @@ static size_t uintToStr(uint64_t num, uint8_t base, char *outbuf, size_t len)
 
 size_t intToStr(int64_t num, uint8_t base, char *outbuf, size_t len)
 {
-	intToStr_unimplemented = true;
+	intToStr_unimplemented = false;
 
 	/* no output buffer */
 	if (!outbuf || len == 0) {
