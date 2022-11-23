@@ -2,6 +2,7 @@
             global intToStr
             global strToInt
 
-intToStr:   ret
+intToStr:   mov rax , rdi
+            ret
 
 strToInt:   ret
