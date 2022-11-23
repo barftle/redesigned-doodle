@@ -139,6 +139,6 @@ int main(int argc, char *argv[])
 	printf("intToStr: %" PRId64 "_10 = %s_%hhu, length: %zu%s\n",
 			val, int_str, base, len, intToStr_unimplemented ?
 			" [UNIMPLEMENTED]" : "");
-	printf("right: %zu%s\n",val,int_str);
+	printf("right: %zu_%s\n",val,int_str);
 	return 0;
 }
