@@ -131,6 +131,7 @@ int main(int argc, char *argv[])
 	printf("strToInt: %s_%hhu = %" PRId64 "_10%s\n",
 			argv[1], base, val, strToInt_unimplemented ?
 			" [UNIMPLEMENTED]" : "");
+	printf("right: %s\n",val)
 
 	char int_str[MAX_STR_LEN];
 	size_t len = intToStr(val, base, int_str,
@@ -138,6 +139,6 @@ int main(int argc, char *argv[])
 	printf("intToStr: %" PRId64 "_10 = %s_%hhu, length: %zu%s\n", val,
 			int_str, base, len, intToStr_unimplemented ?
 			" [UNIMPLEMENTED]" : "");
-
+	printf("right: %s%s\n",val,int_str)
 	return 0;
 }
