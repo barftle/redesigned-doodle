@@ -1,7 +1,8 @@
 ;Bruno Stendal, Martin Baer, Lukas Gewinner, Christian Schaefer          
             global strToInt
 
-strToInt:   
+strToInt:
+    mov rax, 0;
     mov rcx, 0;
   .loop:
     mov al, [rdi+rcx];
