@@ -11,7 +11,7 @@ strToInt:
     mov dl, [rdi+rcx]; 
     cmp dl, 0;
     je .end;
-    jne .mult;
+    jne .end;
   .mult
     mul rsi;
     jmp .loop;
