@@ -7,7 +7,8 @@ strToInt:
     mov al, [rdi+rcx];
     sub rax, 48;
     inc rcx;
-    cmp [rdi+rcx], 0;
+    mov dl, [rdi+rcx]; 
+    cmp dl, 0;
     je .end;
     jne .mult;
   .mult
