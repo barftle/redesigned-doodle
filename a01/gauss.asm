@@ -3,7 +3,7 @@
 
 gauss:      mov rax , rdi       ; rax := rdi
             mul rax
-            add rax , rdi             ; rdx : rax := rsi * rax
+            add rax , rdi        ; rdx : rax := rsi * rax
 
             mov rdx , 0
             mov rcx , 2         ;rcx := 2
