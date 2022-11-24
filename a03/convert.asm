@@ -5,13 +5,15 @@ strToInt:
     mov rax, 0;
     mov rcx, 0;
   .loop:
-    mov al, [rdi+rcx];
-    sub rax, 48;
+    mov rdx, 0;
+    mov dl, [rdi+rcx];
+    sub dl, 48;
+    add al, dl;
     inc rcx;
     mov dl, [rdi+rcx]; 
     cmp dl, 0;
     je .end;
-    jne .end;
+    jne .mult;
   .mult
     mul rsi;
     jmp .loop;
