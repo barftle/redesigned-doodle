@@ -6,7 +6,8 @@ strToInt:
     mov rcx, 0; counter ausnullen
   .loop:
     mov rdx, 0; data ausnullen
-    mov dl, [rdi+rcx]; erstes 8bit teilregister von rdi nach 8-bit data register moven
+    mov dl, [rdi+rcx]; erstes 8bit teilregister von rdi
+                     ;nach 8-bit data register moven
     sub dl, 48; ascii versatz subtrahieren
     add al, dl; auf die letzten 8bit von rax addieren
     inc rcx; versatzcounter erhöhen
