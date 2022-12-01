@@ -53,7 +53,7 @@
 \newcommand{\STAFF}{Bernadette Keßler}
 \newcommand{\ASSIGNMENT}{3}
 \newcommand{\DELIVER}{Freitag, den 25.11.2022, 10:15 Uhr}
-
+\setcounter{secnumdepth}{0}
 
 % Arbitrary packages and settings
 
@@ -80,9 +80,251 @@
 {\small von \STAFF{} \\ bis \DELIVER{}.}
 \vspace*{0.5cm}\\
 \end{center}
+\section{Zahlendarstellung und Rechnen}
+\aufgabe{Führen Sie die folgenden vier Berechnungen in B+V Darstellung, im Einerkomplement, Zweierkomplement und in einer Exzessdarstellung durch. Gehen Sie von 8-Bit breiten Registern aus. Wählen Sie für die Exzessdarstellung einen sinnvollen Offset und begründen Sie Ihre Wahl.}
 \begin{enumerate}
-\setcounter{enumi}{0}
-\aufgabe{}
-\aufgabe{}
+    \item[1.] $23 + 81 = 104$ 
+    \begin{enumerate}
+        \item B+V Darstellung:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00010111 \\
+                + & 01010001 \\
+                Ü & ---1-111- \\
+                \hline
+                 & \uuline{01101000}
+            \end{tabular}
+            \end{center}
+        \item Einerkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00010111 \\
+                + & 01010001 \\
+                Ü & ---1-111- \\
+                \hline
+                 & \uuline{01101000}
+            \end{tabular}
+            \end{center}
+        \item Zweierkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00010111 \\
+                + & 01010001 \\
+                Ü & ---1-111- \\
+                \hline
+                 & \uuline{01101000}
+            \end{tabular}
+            \end{center}
+        \item Exzessdarstellung: Begründung für den Offset in der Fußnote \footnote{Wir haben den Offset 128 gewählt, da die Bitlänger der Binärzahl 8 Bit beträgt. Beim Offset rechnen kommt mit dieser Formel $2^{n-2} -1 = 127$ raus bei der positiven Grenze und beim negativen $-2^{n-1} = -128$ raus als Grenze. Also ist der Offset $128 = 2^{n-1}$.}. Offset wird auf die Zahlen addiert:\\
+        $23 + 128 = 151 = 10010111$\\ $81 + 128 = 209 = 11010001$
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 10010111 \\
+                + & 11010001 \\
+                Ü & ---1-111- \\
+                \hline
+                 & 01101000
+            \end{tabular}
+            \end{center}
+            Vom Ergebnis den Offset subtrahieren um die richtige Darstellung zu erhalten.
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 01101000 \\
+                - & 10000000 \\
+                Ü & 1------------- \\
+                \hline
+                 & \uuline{11101000}
+            \end{tabular}
+            \end{center}
+    \end{enumerate}
+    \item[2.] $36 - 14 = 22$
+    \begin{enumerate}
+        \item B+V Darstellung:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00100100 \\
+                - & 00001110 \\
+                Ü & --1111-- \\
+                \hline
+                 & \uuline{00010110}
+            \end{tabular}
+            \end{center}
+        \item Einerkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00100100 \\
+                + & 11110001 \\
+                Ü & 111---------- \\
+                \hline
+                 & 00010101
+            \end{tabular}
+            \end{center}
+            Der zusätzliche Übertrag muss zum Zwischenergebnis dazu addiert werden:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00010101 \\
+                + & 00000001 \\
+                Ü & ---------1- \\
+                \hline
+                 & \uuline{00010110}
+            \end{tabular}
+            \end{center}
+        \item Zweierkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00100100 \\
+                + & 11110010 \\
+                Ü & 111---------- \\
+                \hline
+                 & \uuline{00010110}
+            \end{tabular}
+            \end{center}
+        \item Exzessdarstellung: Begründung für den Offset in der Fußnote \footnote{Wir haben den Offset 128 gewählt, da die Bitlänger der Binärzahl 8 Bit beträgt. Beim Offset rechnen kommt mit dieser Formel $2^{n-2} -1 = 127$ raus bei der positiven Grenze und beim negativen $-2^{n-1} = -128$ raus als Grenze. Also ist der Offset $128 = 2^{n-1}$.}. Offset wird auf die Zahlen addiert:\\
+        $36 + 128 = 164 = 10100100$\\ $14 + 128 = 142 = 10001110$
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 10100100 \\
+                - & 10001110 \\
+                Ü & ----111--- \\
+                \hline
+                 & 00010110
+            \end{tabular}
+            \end{center}
+            Vom Ergebniss den Offset addieren um die richtige Darstellung zu erhalten.
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00010110 \\
+                + & 10000000 \\
+                Ü & ---------- \\
+                \hline
+                 & \uuline{10010110}
+            \end{tabular}
+            \end{center}
+    \end{enumerate}
+    \item[3.] $72 - 87 = -15$
+    \begin{enumerate}
+        \item B+V Darstellung:
+            \begin{center}
+            \begin{tabular}{cc}
+                 &  01001000\\
+                - & 10101000 \\
+                Ü & 1111--111--- \\
+                \hline
+                 & \uuline{11110001}
+            \end{tabular}
+            \end{center}
+        \item Einerkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 &  01001000\\
+                + & 10101000 \\
+                Ü & ----1------ \\
+                \hline
+                 & \uuline{11110000}
+            \end{tabular}
+            \end{center}
+        \item Zweierkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 &  01001000\\
+                + & 10101001 \\
+                Ü & ----1------ \\
+                \hline
+                 & \uuline{11110001}
+            \end{tabular}
+            \end{center}
+        \item Exzessdarstellung: Begründung für den Offset in der Fußnote \footnote{Wir haben den Offset 128 gewählt, da die Bitlänger der Binärzahl 8 Bit beträgt. Beim Offset rechnen kommt mit dieser Formel $2^{n-2} -1 = 127$ raus bei der positiven Grenze und beim negativen $-2^{n-1} = -128$ raus als Grenze. Also ist der Offset $128 = 2^{n-1}$.}.Offset wird auf die Zahlen addiert:\\
+        $72 + 128 = 200 = 11001000$\\ $87 + 128 = 215 = 11010111$
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 11001000 \\
+                - & 11010111 \\
+                Ü & 1111--111--- \\
+                \hline
+                 & 11110001
+            \end{tabular}
+            \end{center}
+            Vom Ergebniss den Offset addieren um die richtige Darstellung zu erhalten.
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 11110001 \\
+                + & 10000000 \\
+                Ü & 1------------- \\
+                \hline
+                 & \uuline{01110001}
+            \end{tabular}
+            \end{center}
+    \end{enumerate}
+    \item[4.] $-113 - 37 = -150$ 
+    \begin{enumerate}
+        \item B+V Darstellung:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 10001110 \\
+                - & 00100101 \\
+                Ü & 111------1--- \\
+                \hline
+                 & \uuline{01101001}
+            \end{tabular}
+            \end{center}
+        
+        \item Einerkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 10001110 \\
+                + & 11011010 \\
+                Ü & 1---1111----- \\
+                \hline
+                 & \uuline{01101000}
+            \end{tabular}
+            \end{center}
+            Übertrag bei zwei Summanden mit identischem Vorzeichen führt zu einem Overflow!
+        \item Zweierkomplement:
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 10001111 \\
+                + & 11011011 \\
+                Ü & 1---11111--- \\
+                \hline
+                 & \uuline{01101010}
+            \end{tabular}
+            \end{center}
+            Übertrag bei zwei Summanden mit identischem Vorzeichen führt zu einem Overflow!
+        \item Exzessdarstellung: Begründung für den Offset in der Fußnote \footnote{Wir haben den Offset 128 gewählt, da die Bitlänger der Binärzahl 8 Bit beträgt. Beim Offset rechnen kommt mit dieser Formel $2^{n-2} -1 = 127$ raus bei der positiven Grenze und beim negativen $-2^{n-1} = -128$ raus als Grenze. Also ist der Offset $128 = 2^{n-1}$.}.Offset wird auf die Zahlen addiert:\\
+        $-113 + 128 = 15 = 00001111$\\ $37 + 128 = 165 = 10100101$
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 00001111 \\
+                - & 10100101 \\
+                Ü & 111---------- \\
+                \hline
+                 & 01101010
+            \end{tabular}
+            \end{center}
+            Vom Ergebniss den Offset addieren um die richtige Darstellung zu erhalten.
+            \begin{center}
+            \begin{tabular}{cc}
+                 & 01101010 \\
+                + & 10000000 \\
+                Ü & ---------- \\
+                \hline
+                 & \uuline{11101010}
+            \end{tabular}
+            \end{center}
+    \end{enumerate}
 \end{enumerate}
+Vorteil von Zweierkomplement:\\
+Das Zweierkomplement ist besser, da es nur eine Darstellung für die Null hat und auch gleichzeitig, die richtige mathematische Reihenfolge der Zahlen zeigt. Als Beispiel 000 ist die Null, dann ist die 001 die Eins und die 111 ist die -1, dass sieht dann so aus:
+\includegraphics[width = 16cm]{TI2_3/U3A1.png}
+Die negativen Zahlen werden durch das Vorzeichen gekennzeichnet, wie bei der B+V Darstellung, bloß ohne die Schreibweise von zwei Nullen.
+\section{Typkonvertierung}
+\aufgabe{Implementieren Sie eine \glqq String to Integer\grqq{} \textit{oder} - als deutlich forderndere Aufgabe - eine \glqq Integer to String\grqq{} Funktion. Diese sollen zwischen einer ASCII Zeichenkette der Form \glqq 1234\grqq{} mit einer gegebenen Basis (bspw. 10) und ihrer entsprechenden Integer Zahlendarstellung 1234 konvertieren.}
+\\
+\\
+Es wurde sich für \glqq String to Integer\grqq{} entschieden.
+
+\lstinputlisting[language=Assembler]{convert.asm}
+
+In der Abgabe ist der c-wrapper mit enthalten, da er angepasst wurde. 
+
 \end{document} 
