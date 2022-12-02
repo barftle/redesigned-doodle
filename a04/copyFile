@@ -2,7 +2,8 @@
             global calc_add
 
 calc_add:
-        mov rax, 0; 
+        mov rsp, 0;
+
         movd edx, xmm0;
         shr edx, 31;
         mov ah, dl;
@@ -52,38 +53,30 @@ calc_add:
         jne .matisse;
         xor edi, 0xff;
 
-        mov rdx, 0;
-
       .matisse:
         cmp al, cl;
-        jl .shiftA;
-        jg .shiftB;
+        ;jl .shiftA
+        ;jg .shiftB
         je .noShift;
 
       .shiftA:
 
         mov rdx, 0;
         mov dl, cl;
-        mov cl, 0;
 
         mov cl, dl;
         sub cl, al;
-
-        mov al, cl;
-        mov edx, 1;
 
         shr esi, cl;
 
         mov al, dl;
         mov cl, dl;
-
         jmp .noShift;
     
       .shiftB:
 
         mov rdx, 0;
         mov dl, cl;
-        mov cl, 0;
 
         mov cl, al;
         sub cl, dl;
@@ -91,7 +84,7 @@ calc_add:
         shr edi, cl;
 
         mov cl, dl;
-        jmp .noShift;
+        jmp .noShift
     
       .noShift:
 
@@ -102,24 +95,18 @@ calc_add:
 
         mov rbx, 0;
         mov ebx, edx;
-        shr ebx, 24;
-
+        shr ebx, 23;
         cmp ebx, 0;
-        jne .expoPlus;
-        je .end;
+        jne .expoPlus
+
+        jmp .end
 
       .expoPlus:
-        cmp ebx, 0;
-        jne .loop;
-        je .end;
-      .loop:
-        add al, 1;
-        shr rbx, 1;
-        jmp .expoPlus;
+        jmp .end;
 
       .end:
-        shl edx, 9;
-        shr edx, 9;
+        shl edx, 1;
+        shr edx, 1;
 
         cmp ah, 1;
         jne .endBuild
@@ -134,7 +121,8 @@ calc_add:
       .endBuild:
 
         mov rbx, 0;
-        mov bh, ah;
+        mov bl, ah;
+        shl rbx, 8;
         mov bl, al;
         shl rbx, 23;
         add ebx, edx;
