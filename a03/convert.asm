@@ -19,4 +19,6 @@ strToInt:
     mul rsi;  rax mit der basis multiplizieren
     jmp .loop;
   .end
+    mov rax, 1;
+    xor rax, 0xff; 
     ret
