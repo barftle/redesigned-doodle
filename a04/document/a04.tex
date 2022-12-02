@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{german}
+\usepackage{graphicx}
+%\usepackage{units}
+\usepackage[locale=DE]{siunitx}
+\usepackage{setspace}
+\usepackage{threeparttable}
+%\usepackage{url} 
+\usepackage[hyphens]{url}
+\usepackage{pdfpages}
+\usepackage{ulem}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{polynom}
+\usepackage{enumitem}
+%\usepackage{ipe}
+\usepackage{scrlayer-scrpage}
+\usepackage{qtree}
+\usepackage{cancel}
+
+\usepackage{tikz}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\parindent0mm
+\sloppy
+
+% Typesetting code, setup for C by default
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{default}{%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  basicstyle=\ttfamily,
+  backgroundcolor=\color{gray!8},
+  commentstyle=\color{green!60!blue}\itshape,
+  keywordstyle=\color{blue},
+  stringstyle=\color{blue!30!red},
+  tabsize=4,
+  keepspaces=true,
+}
+\lstset{style=default, language=C}
+
+% Basic data
+\newcommand{\VORLESUNG}{TI2: Rechnerarchitektur}
+\newcommand{\STUDENTS}{Bruno Stendal, Martin Baer, Lukas Gewinner und Christian Schäfer}
+\newcommand{\STAFF}{Bernadette Keßler}
+\newcommand{\ASSIGNMENT}{4}
+\newcommand{\DELIVER}{Freitag, den .2022, 10:15 Uhr}
+\setcounter{secnumdepth}{0}
+
+% Arbitrary packages and settings
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\cat}{++}
+\newcommand{\lam}{\lambda}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\half}[1]{\frac{#1}{2}}
+\newcommand{\punkte}[1]{{\small{ }(#1 Punkte)}}
+
+\newcommand{\aufgabe}[1]{\item{\bf #1}}
+
+\begin{document}
+% Document title
+\ofoot{\pagemark}
+\begin{center}
+    Abgabe von \STUDENTS{}\\
+ \ASSIGNMENT{}. Aufgabenblatt  zum Kurs 
+\vspace*{0.2cm}
+
+{\Large \VORLESUNG{}}
+
+{\small von \STAFF{} \\ bis \DELIVER{}.}
+\vspace*{0.5cm}\\
+\end{center}
+\section{Zahlendarstellung und Rechnen}
+\aufgabe{Beantworten Sie folgende Fragen:}
+\begin{enumerate}
+    \item Bei Fließkommazahlen ist die Position des Kommas nicht wie bei Festkommazahlen fixiert, das heißt, dass mein keine Kompromisse zwischen Wertebereich und Genauigkeit eingehen muss. Auf diese Weise können sowohl sehr große Zahlen, die jedoch nur wenige Nachkommsastellen besitzen, als auch sehr genaue Zahlen, die viele Nachkommastellen jedoch wenige Vorkommastellen besitzen, gespeichert werden.
+    \item Eine Fließkommazahl besteht aus drei Abschnitten, die Mantisse, Charakteristik und S heißen. Dabei steht S für das Vorzeichenbit. Die Fließkommazahl wird nach der Exponentialschreibweise mit $z = Mantisse \cdot Charakteristik$ dargestellt. Die Charakteristik besteht intern aus der Basis 2 mit einem Exponenten, welchem je nach Größe Bits reserviert werden.
+    \item Der Vorteil dem Exponenten mehr Bits zuzuteilen ist, dass der Wertebereich der darstellbaren Zahlen größer wird und der Vorteil der Mantisse mehr Bits zuzuteilen ist, dass man genauere Zahlen darstellen kann.
+    \item Ein Überlauf entsteht, wenn man eine größere Zahl als die größte darstellbare Zahl darstellen will. Das heißt, es sind mehr Bits gefordert, als für den Exponenten zugeteilt wurden. Beim Unterlauf ist es genau andersherum, wenn man eine kleinere Zahl als die kleinste darstellbare Zahl darstellen will. Anders gesagt entsteht eine Lücke zwischen der kleinsten darstellbaren positiven und größten darstellbaren negativen Zahl rund um die null.
+    \item Bei IEEE-754 werden bestimmte Standards für die Darstellung von Fließkommazahlen gesetzt. Beispielsweise werden bei 32 Bits die Bits in das „Most significant bit“ für das Vorzeichen, 8 Bits für die Charakteristik/Exponenten und 23 Bits für die Mantisse aufgeteilt. Negative Exponenten werden mittels Offset=127 ermöglicht. Des Weiteren wird die Normalisierung verwendet und durch das hidden Bit etwas Speicher eingespart, aber dann eine extra Darstellung der „0“ gefordert. Overflows über maxreal und minreal werden als +- unendlich dargestellt und eine unzulässige Darstellung NaN (not a number).
+    \item Betragsmäßig größte bzw. kleinste darstellbare Zahl im IEEE-754 32bit Standard:
+    \begin{enumerate}
+        \item[Größte darstellbare] Zahl: $(2-2^{-23}) \cdot 2^{127} \approx 3,4·10^{38}$
+        \item[Kleinste darstellbare] Zahl
+        \begin{enumerate}
+            \item[normalisiert:] $2^{-126} \approx 1,2·10^{-38}$
+            \item[denormalisiert:] $2^{-23} \cdot 2^{-126} \approx 1,4·10^{-45}$
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\includepdf[pages=1]{u4.pdf}
+\includepdf[pages=2]{u4.pdf}
+\section{Floating Point Rechner}
+\aufgabe{Implementieren Sie eine Floating Point Unit in Software. Zwei gegebene 32-bit IEEE-754 Zahlen (operand1 und operand2) sollen addiert werden können. Das Ergebnis soll ebenfalls im 32-bit IEEE-754 Floating Point Format zurückgegeben werden. Verwenden Sie keine Floating Point Register / Befehle außer MOVD.}
+
+\lstinputlisting[language=Assembler]{calc.asm}
+
+\end{document} 
