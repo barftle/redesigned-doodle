@@ -27,20 +27,19 @@ asm_fib_it:
 
 asm_fib_rek:
 	;rdi = n
-	;MOV rbx, 0;
-	;MOV rbx, rdi;
+	MOV rax, 0;
+	MOV rax, rdi;
 	MOV rcx, 0;
 	MOV rdx, 0;
 	
-	CMP rbx, 3;
+	CMP rax, 3;
 	jl .end;
 	jg .fibo;
 
 
 	.fibo:
-		MOV rdx, 10;
+		MOV rax, 10;
 		JMP .end;
 
 	.end:
-		MOV rax, rdx;
 		RET;
