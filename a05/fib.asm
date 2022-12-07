@@ -38,7 +38,7 @@ asm_fib_rek:
 
 
 	.fibo:
-		inc rdx;
+		mov rdx, 10;
 		jmp .end;
 
 	.end:
