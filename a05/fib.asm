@@ -27,6 +27,7 @@ asm_fib_it:
 
 asm_fib_rek:
 	;rdi = n
+	mov rbx, 0;
 	mov rbx, rdi;
 	mov rcx, 0;
 	mov rdx, 0;
@@ -39,7 +40,7 @@ asm_fib_rek:
 	.fibo:
 		inc rdx;
 		jmp .end;
-		
+
 	.end:
 		mov rax, rdx;
 		RET;
