@@ -1,4 +1,4 @@
-Global asm_fib_it
+Global asm_fib_it, asm_fib_rek
 
 SECTION .text
 
@@ -23,3 +23,7 @@ asm_fib_it:
 		MOV r8, r10 ; das Ergebniss aus der Addition wird jetzt nach r8(k) verschoben, aus r10.
 		DEC rdi ; rdi(n) wird im eins kleiner, also rdi(n) = rdi(n) - 1
 		JMP .schleife ; sprint zurück zur Funktion .schleife.
+
+
+asm_fib_rek:
+	RET;
