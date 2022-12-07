@@ -26,4 +26,5 @@ asm_fib_it:
 
 
 asm_fib_rek:
+	mov rax, rdi;
 	RET;
