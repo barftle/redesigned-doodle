@@ -27,8 +27,8 @@ asm_fib_it:
 
 asm_fib_rek:
 	;rdi = n
-	MOV rbx, 0;
-	MOV rbx, rdi;
+	;MOV rbx, 0;
+	;MOV rbx, rdi;
 	MOV rcx, 0;
 	MOV rdx, 0;
 	
