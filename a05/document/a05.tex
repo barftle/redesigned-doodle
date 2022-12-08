@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{german}
+\usepackage{graphicx}
+%\usepackage{units}
+\usepackage[locale=DE]{siunitx}
+\usepackage{setspace}
+\usepackage{threeparttable}
+%\usepackage{url} 
+\usepackage[hyphens]{url}
+\usepackage{pdfpages}
+\usepackage{ulem}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{polynom}
+\usepackage{enumitem}
+%\usepackage{ipe}
+\usepackage{scrlayer-scrpage}
+\usepackage{qtree}
+\usepackage{cancel}
+
+\usepackage{tikz}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\parindent0mm
+\sloppy
+
+% Typesetting code, setup for C by default
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{default}{%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  basicstyle=\ttfamily,
+  backgroundcolor=\color{gray!8},
+  commentstyle=\color{green!60!blue}\itshape,
+  keywordstyle=\color{blue},
+  stringstyle=\color{blue!30!red},
+  tabsize=4,
+  keepspaces=true,
+  breaklines=true,
+}
+\lstset{style=default, language=C}
+
+% Basic data
+\newcommand{\VORLESUNG}{TI2: Rechnerarchitektur}
+\newcommand{\STUDENTS}{Bruno Stendal, Martin Baer, Lukas Gewinner und Christian Schäfer}
+\newcommand{\STAFF}{Bernadette Keßler}
+\newcommand{\ASSIGNMENT}{5}
+\newcommand{\DELIVER}{Freitag, den .2022, 10:15 Uhr}
+\setcounter{secnumdepth}{0}
+
+% Arbitrary packages and settings
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\cat}{++}
+\newcommand{\lam}{\lambda}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\half}[1]{\frac{#1}{2}}
+\newcommand{\punkte}[1]{{\small{ }(#1 Punkte)}}
+
+\newcommand{\aufgabe}[1]{\item{\bf #1}}
+
+\begin{document}
+% Document title
+\ofoot{\pagemark}
+\begin{center}
+    Abgabe von \STUDENTS{}\\
+ \ASSIGNMENT{}. Aufgabenblatt  zum Kurs 
+\vspace*{0.2cm}
+
+{\Large \VORLESUNG{}}
+
+{\small von \STAFF{} \\ bis \DELIVER{}.}
+\vspace*{0.5cm}\\
+\end{center}
+\section{Stack}
+\aufgabe{Beantworten Sie die nachfolgenden Fragen und geben ggf. Ihre Quellen an.}
+\begin{enumerate}
+    \item Ein Stack ist ein Teil des Hauptspeichers, welcher stapelartig aufgebaut ist. Der „Stapel“ kann Objekte aufnehmen oder Elemente wieder abgeben (speichert zum Beispiel Program Status Word oder Rücksprungadressen beim Aufruf von Subroutinen) nach dem Last-In-First-Out-Prinzip (LIFO). Dabei werden mit den Maschinenbefehlen Push und Pop (Pull) Elemente abgelegt oder weggenommen. Push legt ein Element oben ab, wodurch der Stack nach unten Richtung „Keller“ wächst. Pop nimmt ein Element oben weg, wodurch der Stack kleiner wird (freier Speicher/Keller wird größer). Das ermöglicht, dass das oberste Element einfach mit dem Offset null adressiert werden kann. Hardware unterstützte Stacks sind direkter Teil des Hauptspeichers. Dafür gibt es spezielle Register mit dem „Stack Pointer“. Dieser enthält eine Speicheradresse und dient damit der Ansteuerung eines Stacks, indem auf die Spitze des Stacks gezeigt wird.
+    \item Jmp springt zu einer Speicheradresse, wodurch sich der Zeiger dauerhaft ändert. Call hingegen speichert die aktuelle Adresse, weil danach wieder auf die ursprüngliche Adresse zurückgegriffen wird mittels einer return Anweisung. Deshalb kann dies nach dem LIFO-Prinzip mit einem Stack umgesetzt werden. Jmp ist Teil eines Programms und springt in der Reihenfolge. Call initialisiert eine Subroutine, die dann am Ende an die Anfangsposition zurückehrt, wodurch die Reihenfolge erhalten bleibt.
+    \item Statische Speicherallokation von globalen Variablen führen dazu, dass Variablen ihren Wert beibehalten, auch wenn sie innerhalb von Funktionen benutzt werden. Automatische Speicherallokation: Variablen, die lokal für Funktionen deklariert werden, werden auf dem Stack gespeichert und nach dem die Funktion zu Ende ist wieder entfernt, wodurch wieder Speicher freigegeben wird. So entsteht ein dynamischer Speicherbereich.
+    \item Ein Stackframe ist eine Gruppe bestehend aus Parametern, lokale Variablen und Rücksprungadressen. Es ist ein Art Rahmen, welcher um einen Teil des Stacks gezogen wird und gruppiert diesen somit in eine gewisse Anzahl an Stackframes. Ebenfalls im Frame ist ein Base Pointer. Dieser ist ein Register, welches auf eine fixierte Adresse zeigt. Bei Funktionen innerhalb eines Stacksframes wird somit ein konstanter Bezugspunkt definiert, wodurch dem Programm die Ermittlung der „Entfernung“ oder Position einer Variable einfacher gemacht wird. Der Leave-Befehl setzt den neuen Stack Pointer nach einem Funktionsaufruf in einem Stackframe, indem der Stack Pointer auf den Base Pointer gesetzt wird und dieser dann mit Pop entfernt wird. Anders gesagt „zerstört“ der Befehl den aktuellen Stackframe, wohingegen Enter einen neuen Frame anlegt, indem mit Push ein Base Pointer angelegt und mit dem Stack Pointer adressiert wird.
+\end{enumerate}
+\newpage
+\section{Fibonacci Zahlen}
+\aufgabe{Auf dem letzten Zettel haben Sie die Wiederholung von Instruktionen durch Sprünge kennengelernt. Diese Art der Wiederholung wird Iteration genannt. Die andere Art der Wiederholung ist Rekursion. Machen Sie sich mit Rekursion auf Assemblerebene und dafür mit dem Callstack vertraut (Befehle: PUSH, POP, CALL, RET). Schreiben Sie in Assembler eine iterative und eine rekursive Fibonacci-Funktion.}
+
+
+\lstinputlisting[language=Assembler]{fib.asm}
+
+\newpage
+\aufgabe{Erklären Sie die Zeitunterschiede sowohl zwischen den rekursiven und iterativen Funktionen als auch zwischen den C und Assembler Funktionen. Warum wird Rekursion überhaupt benötigt?}
+\\
+Der Zeitunterschied zwischen der Iterativen und der Rekursiven Funktion entsteht aufgrund des Overheads.
+\\
+In unserem Beispiel besitzt die Rekursionslösung zwei Nachteile.
+\begin{itemize}
+    \item Laufzeit, aufgrund des erzeugten Overhead durch Funktions-calls dauert die Funktion deutlich länger
+    \item Speicher, durch die mitunter große Rekursionstiefe werden die Stacks sehr groß und damit die Anwendung Speicherintensiv
+\end{itemize}
+
+
+Die Vorteile von Rekursion sind:
+\begin{itemize}
+    \item Einfacherer Code bei komplexen Problemen, viele Mathematische Probleme lassen sich einfacher in einer Rekursiven Form anstatt einer Iterativen Form abbilden
+    \item Rekursive Funktionen, können der Rekursion Informationen in Form von Parametern übergeben, womit man komplexere Abhängigkeiten modellieren kann als bei der Iterationen Funktion.
+    \item Bestimmte Operationen auf Daten sind Rekursiv einfacher z.B. Rotation von AVL-Bäumen können einfacher modelliert werden, da die Rotation des Teilbaumes einfach in einer Rekursion stattfinden kann, wo dieser der die Wurzel darstellt.
+\end{itemize}
+\\
+Der C Code ist in unserem Fall schneller, da dieser durch den Compiler, da die -O2 Flag im Makefile gesetzt ist, optimiert wird. Durch die -O2 Flag, welche identisch zur -xO2 Flag ist, werden unter anderem Algebraische-, Kopier-, Rekrusions- und Schleifenoptimierung durchgeführt.
+\\
+\\
+Die Zahl innerhalb der Flag steht dabei für das Level der Optimierung wobei 1, das geringste und 5 das höchste mit den größten Auswirkungen ist.
+\\
+\\
+Somit ist der NASM Code langsamer da er unoptimiert direkt übersetzt und ausgeführt wird.
+\\
+\\
+Quelle für die Spezifizierung der -x02 Quelle: \href{https://docs.oracle.com/cd/E19957-01/806-3567/cc_options.html}{Oracle CC Users Guide}
+\end{document} 
