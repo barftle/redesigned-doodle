@@ -73,12 +73,12 @@ formula_int:
     mov r10, 0;
 
     mov rax, rdi;
-    neg rax;
+    
 
     mov r10, 3;
     div r10;
 
-    neg rax;
+    
     ret;
 
 
