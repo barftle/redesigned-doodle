@@ -1,3 +1,4 @@
+;Bruno Stendal, Martin Baer, Lukas Gewinner, Christian Schaefer  
 GLOBAL formula_int, formula_flt
 
 SECTION .data;
