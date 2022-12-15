@@ -140,8 +140,6 @@ formula_flt:
     ;f = xmm5
     ;g = xmm6
     ;h = xmm7
-    ;mov xmm0, xmm1;
-    ;https://redirect.cs.umbc.edu/courses/undergraduate/313/fall04/burt_katz/lectures/Lect12/floatingpoint.html
     addsd xmm0, xmm1;
     movsd xmm1, xmm0;               xmm1 = a+b
     movsd xmm0, [rel null];
