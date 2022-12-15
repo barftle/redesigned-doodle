@@ -155,12 +155,12 @@ formula_flt:
     mulsd xmm1, xmm2;               xmm1 = (a+b)*(c-d)
     movsd xmm0, xmm1;
 
-    addsd xmm4, xmm5;
+    addsd xmm4, xmm5;               zweite überklammer
     subsd xmm4, xmm6;
     addsd xmm4, xmm7;
 
-    mulsd xmm1, xmm4;
-    divsd xmm1, [rel drei];
+    mulsd xmm1, xmm4;               multiplizieren überklammern
+    divsd xmm1, [rel drei];         division mit drei
 
     movsd xmm0, xmm1;
 
