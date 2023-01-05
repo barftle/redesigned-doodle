@@ -7,15 +7,16 @@
 
 #define BOUND 100
 
-extern void sort(uint64_t len, int64_t a[len]);
+extern uint64_t sort(uint64_t len, int64_t a[len]);
 
-static inline void printArray(int64_t *to_show, uint64_t len)
+static inline void printArray(int64_t *to_show, uint64_t len, uint64_t len_func)
 {
 	for (uint64_t i = 0; i < len; i++) {
 		if (i == 0) { // erstes Element
 			printf("Array: %" PRId64 ", ", to_show[i]);
 		} else if (i == (len - 1)) { // letztes Element
 			printf("%" PRId64 "\n", to_show[i]);
+			printf("Return value: %ld \n", len_func);
 		} else {
 			printf("%" PRId64 ", ", to_show[i]);
 		}
@@ -58,7 +59,8 @@ int main(int argc, char *argv[])
 		// }
 	}
 
-	printArray(to_sort, len);
-	sort(len, to_sort);
-	printArray(to_sort, len);
+	uint64_t lengthAfterSort = 0;
+	printArray(to_sort, len, len);
+	lengthAfterSort = sort(len, to_sort);
+	printArray(to_sort, len, lengthAfterSort);
 }
