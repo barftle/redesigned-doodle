@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{german}
+\usepackage{graphicx}
+%\usepackage{units}
+\usepackage[locale=DE]{siunitx}
+\usepackage{setspace}
+\usepackage{threeparttable}
+%\usepackage{url} 
+\usepackage[hyphens]{url}
+\usepackage{pdfpages}
+\usepackage{ulem}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{polynom}
+\usepackage{enumitem}
+%\usepackage{ipe}
+\usepackage{scrlayer-scrpage}
+\usepackage{qtree}
+\usepackage{cancel}
+
+\usepackage{tikz}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\parindent0mm
+\sloppy
+
+% Typesetting code, setup for C by default
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{default}{%
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  basicstyle=\small\ttfamily,
+  backgroundcolor=\color{gray!8},
+  commentstyle=\color{green!60!blue}\itshape,
+  keywordstyle=\color{blue},
+  stringstyle=\color{blue!30!red},
+  tabsize=3,
+  keepspaces=true,
+  breaklines=true,
+}
+\lstset{style=default, language=C}
+
+% Basic data
+\newcommand{\VORLESUNG}{TI2: Rechnerarchitektur}
+\newcommand{\STUDENTS}{Bruno Stendal, Martin Baer, Lukas Gewinner und Christian Schäfer}
+\newcommand{\STAFF}{Bernadette Keßler}
+\newcommand{\ASSIGNMENT}{7}
+\newcommand{\DELIVER}{Freitag, den 06.01.2022, 10:15 Uhr}
+
+
+% Arbitrary packages and settings
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\cat}{++}
+\newcommand{\lam}{\lambda}
+\newcommand{\floor}[1]{\lfloor{#1}\rfloor}
+\newcommand{\ceil}[1]{\lceil{#1}\rceil}
+\newcommand{\half}[1]{\frac{#1}{2}}
+\newcommand{\punkte}[1]{{\small{ }(#1 Punkte)}}
+
+\newcommand{\aufgabe}[1]{\item{\bf #1}}
+
+\begin{document}
+% Document title
+\ofoot{\pagemark}
+\begin{center}
+    Abgabe von \STUDENTS{}\\
+ \ASSIGNMENT{}. Aufgabenblatt  zum Kurs 
+\vspace*{0.2cm}
+
+{\Large \VORLESUNG{}}
+
+{\small von \STAFF{} \\ bis \DELIVER{}.}
+\vspace*{0.5cm}\\
+\end{center}
+\section{Bedingte Ausführung}
+\aufgabe{Beantworten Sie folgende Fragen:}
+\begin{enumerate}
+    \item Sprungvorhersage ist ein Konzept, um Ineffizienz im Pipelining bei Mikroprozessoren entgegenzuwirken. Befehle werden sequentiell in einen Pipeline-Kanal geladen. Erfolgt ein Sprung, werden alle davor (teils) verarbeiteten Befehle verworfen. Es existiert somit keine Effizienz. Mit der Sprungvorhersage soll ein Sprung und dessen Zieladresse so früh wie möglich erkannt werden.
+    \item Wikipedia: Branch predictor, und Global/Local Branch Prediction , in der VL wird das nicht erwähnt
+    \item Ein Vorteil von 2-Bit Automaten ggü. 1 Bit-Automaten liegt bei der Ausführung von (inneren) Schleifen. Eine Schleife nimmt immer den , abgesehen vom letzten Mal, wo sie endet. Während ein 1-Bit Automat jetzt zwar beim ersten kompletten Durchlauf der inneren Schleife immer bis auf einmal richtig lag, so würde er aber beim nächsten Anfang der inneren Schleife wieder einmal falsch liegen, da er ja zuletzt bei dieser Schleife TAKEN vorhersagte, obwohl diese Schleife dort beendet war. D.h. aufgrunddessen wird er wieder sagen NOT TAKEN, daraus folgt, dass bei inneren Schleifen immer der Anfang und das Ende falsch vorhergesagt wird. Das wird zum Problem bei weniger Durchläufen, siehe 4x4-Matrix, es ergibt sich nur eine 50 prozentige Trefferquote. 2-Bit Automaten würden hier am Ende der inneren Schleife vom STRONGLY TAKEN in den WEAKLY TAKEN Zustand wechseln, und beim nächsten Start der Schleife wieder TAKEN sagen und somit wieder zurück im Zustand STRONGLY TAKEN sein, also nur eine falsche Vorhersage pro Komplettem inneren Schleifendurchlauf. (2-Bit Automaten müssen hier quasi 2 Mal hintereinander falsch liegen um Ihre Meinung zu ändern).
+    \item Der Unterschied vom Hysteresis-Scheme zum Saturation-Scheme liegt darin, dass man beim S-Scheme vom Ausgangspunkt STRONG NOT TAKEN nach 2x TAKEN nur im WEAKLY TAKEN Zustand landet, statt wie beim H-Scheme im STRONGLY TAKEN. Dadurch es vorkommen das der Automat bei Schwankungen von TAKEN/NOT TAKEN immer nach einer Vorhersage seine Meinung ändert (H-Scheme MUSS immer zweimal falsch liegen um seine Meinung zu ändern). Da es aber häufiger vorkommt, dass TAKEN/NOT TAKEN über kürzere Zeiträume konstant sind, (Schleifen, im Zweifel sogar if-Abfragen), ist das H-Scheme idR. die bessere Wahl.
+    \item Der BTB speichert Bedingte Sprünge im Programm sowie ihre Zieladressen und die Vorhersage dafür (manchmal sogar die nächsten Befehle, je nach Prozessor). Tabellarish geordnet besteht ein Datensatz im Buffer also aus Sprungadresse, Zieladresse und Prediction-Bit/s. Wenn der Program Counter mit einer Adresse eines bedingten Sprungs im BTB übereinstimmt, sieht man hier also schon die Zieladresse falls der Sprung genommen wird, abhängig davon, welche/s Bit/s in der Prediction steht. Diese/s Bit/s werden anhand der bisherigen Historie dieses potenziellen Sprungs gesetzt. Der BTB ist also eine weitere Form der Performancesteigerung. Völlig fehlerfrei kann dies aber nicht ablaufen, aufgrund von beispielsweise variablen Adressen.
+    \item Das Starten der Automaten im Zustand "not taken" oder "strongly not taken" kann dazu beitragen, die Anzahl der Fehlprognosen des BTBs zu verringern, da der Mechanismus zunächst vorhersagt, dass die Zweige nicht genommen werden. Dies kann dazu beitragen, ein Abwürgen der Pipeline zu vermeiden und die Gesamtleistung des Systems zu verbessern. Es ist im Allgemeinen nicht sinnvoll, die Automaten im Zustand "taken" oder "strongly taken" zu starten, da dies dazu führen würde, dass der Mechanismus zunächst vorhersagt, dass die Zweige entnommen werden, was wahrscheinlich zu einer höheren Anzahl von Fehlvorhersagen und einer geringeren Leistung führt.
+\end{enumerate}
+\aufgabe{Geben Sie für folgendes Programmschema die Anzahl der Sprungvorhersagen und deren Erfolgsrate bei einem globalen 2-Bit-Prädiktor nach Hysteresis-Schema an, mit Initialisierung auf \glqq weakly taken\grqq{}.}\\
+Dieses Programm besteht aus zwei Schleifen. Die äußere Schleife (mit der Bezeichnung .loop1) wird dreimal durchlaufen, und die innere Schleife (mit der Bezeichnung .loop2) durchläuft jede Iteration der äußeren Schleife zehnmal. Das bedeutet, dass die innere Schleife insgesamt 3 x 10 = 30 Mal ausgeführt wird. In diesem Programm gibt es zwei Sprunganweisungen: CMP und JL. Die CMP-Anweisung vergleicht den Wert im RBX-Register mit 10, und die JL-Anweisung (die für \glqq jump if less\grqq{} steht) bewirkt einen Sprung zum Label .loop2, wenn das Ergebnis des Vergleichs wahr ist. Das bedeutet, dass die JL-Anweisung zehnmal pro Iteration der äußeren Schleife ausgeführt wird (d. h. der Sprung wird ausgeführt). Bei einem globalen 2-Bit-Prädiktor nach dem Hystereseschema mit der Initialisierung \glqq weakly taken\grqq{} gäbe es insgesamt 30 Sprungvorhersagen (eine für jedes Mal, wenn die Anweisung JL ausgeführt wird). Die Erfolgsquote dieser Vorhersagen würde von der spezifischen Implementierung des Prädiktors und den Eigenschaften des ausgeführten Programms abhängen.
+\aufgabe{Übersetzen Sie die Befehlsfolge zunächst wie gewohnt mit einem bedingten Sprung für die IF-Verzweigung nach Assembler. Wie viele Takte sind zur Abarbeitung der Befehlsfolge nötig, wenn der Bedingungsblock ausgeführt werden soll, die Sprungvorhersage aber eine falsche Vorhersage trifft? Visualisieren Sie Ihre Lösung!}
+\lstinputlisting[language=Assembler]{Befehlsfolge.asm}
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+    Step & IF & ID & OF & EX & WB \\
+    \hline
+    1. & 1 & NOP & NOP & NOP & NOP \\
+    2. & NOP & 1 & NOP & NOP & NOP \\
+    3. & NOP & NOP & 1 & NOP & NOP \\
+    4. & 2 & NOP & NOP & 1 & NOP \\
+    5. & NOP & 2 & NOP & NOP & 1 \\
+    6. & NOP & NOP & 2 & NOP & NOP \\
+    7. & 3 & NOP & NOP & 2 & NOP \\
+    8. & NOP & 3 & NOP & NOP & 2\\
+    9. & NOP & NOP & 3 & NOP & NOP \\
+    10. & 4 & NOP & NOP & 3 & NOP \\
+    11. & NOP & 4 & NOP & NOP & 3 \\
+    12. & NOP & NOP & 4 & NOP & NOP \\
+    13. & 5 & NOP & NOP & 4 & NOP \\
+    14. & NOP & 5 & NOP & NOP & 4 \\
+    15. & NOP & NOP & NOP & NOP & NOP \\
+    16. & NOP & NOP & NOP & NOP & NOP \\
+    17. & NOP & NOP & NOP & NOP & NOP \\
+    18. & NOP & NOP & NOP & NOP & NOP \\
+    19. & NOP & NOP & NOP & NOP & NOP \\
+    20. & NOP & NOP & NOP & NOP & NOP \\
+    21. & NOP & NOP & NOP & NOP & NOP \\
+    22. & NOP & NOP & NOP & NOP & NOP \\
+    23. & NOP & NOP & NOP & NOP & NOP \\
+    24. & NOP & NOP & NOP & NOP & NOP \\
+    25. & 12 & NOP & NOP & NOP & NOP \\
+    26. & NOP & 12 & NOP & NOP & NOP \\
+    27. & NOP & NOP & 12 & NOP & NOP \\
+    28. & 13 & NOP & NOP & 12 & NOP \\
+    29. & NOP & 13 & NOP & NOP & 12 \\
+    30. & NOP & NOP & 13 & NOP & NOP \\
+    31. & 14 & NOP & NOP & 13 & NOP \\
+    32. & NOP & 14 & NOP & NOP & 13 \\
+    33. & NOP & NOP & 14 & NOP & NOP \\
+    34. & NOP & NOP & NOP & 14 & NOP \\
+    35. & NOP & NOP & NOP & NOP & 14 \\
+    36. &  &  & Ende. &  & 
+\end{tabular}
+\end{center}
+In Zeile 15 bis 24 ist der Pipelineflush der 10 Takte kostet.
+\aufgabe{Übersetzen Sie jetzt die Befehlsfolge unter Zuhilfenahme von Predicated Instructions. Wie viele Takte sind jetzt zur Abarbeitung der Befehlsfolge nötig? Visualisieren Sie Ihre Lösung!}\\
+Da a dreimal um 1 addiert wird vor dem Sprung und es nur in einem Fall 0 ergibt, dem Fall a = -3, kann man den bedingten Sprung je \glqq jump equal\grqq{} in jne \glqq jump not equal\grqq{} ändern.
+\lstinputlisting[language=Assembler]{Befehlsfolge_1.asm}
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+    Step & IF & ID & OF & EX & WB \\
+    \hline
+    1. & 1 & NOP & NOP & NOP & NOP \\
+    2. & NOP & 1 & NOP & NOP & NOP \\
+    3. & NOP & NOP & 1 & NOP & NOP \\
+    4. & 2 & NOP & NOP & 1 & NOP \\
+    5. & NOP & 2 & NOP & NOP & 1 \\
+    6. & NOP & NOP & 2 & NOP & NOP \\
+    7. & 3 & NOP & NOP & 2 & NOP \\
+    8. & NOP & 3 & NOP & NOP & 2\\
+    9. & NOP & NOP & 3 & NOP & NOP \\
+    10. & 4 & NOP & NOP & 3 & NOP \\
+    11. & NOP & 4 & NOP & NOP & 3 \\
+    12. & NOP & NOP & 4 & NOP & NOP \\
+    13. & 5 & NOP & NOP & 4 & NOP \\
+    14. & NOP & 5 & NOP & NOP & 4 \\
+    15. & 8 & NOP & NOP & NOP & NOP \\
+    16. & NOP & 8 & NOP & NOP & NOP \\
+    17. & NOP & NOP & 8 & NOP & NOP \\
+    18. & 9 & NOP & NOP & 8 & NOP \\
+    19. & NOP & 9 & NOP & NOP & 8 \\
+    20. & NOP & NOP & 9 & NOP & NOP \\
+    21. & 10 & NOP & NOP & 9 & NOP \\
+    22. & NOP & 10 & NOP & NOP & 9 \\
+    23. & NOP & NOP & 10 & NOP & NOP \\
+    24. & NOP & NOP & NOP & 10 & NOP \\
+    25. & NOP & NOP & NOP & NOP & 10 \\
+    26. &  &  & Ende. &  & 
+\end{tabular}
+\end{center}
+\aufgabe{Geben Sie an, welche Lösung effizienter ist und unter welchen Bedingungen sich das ändern würde.}\\
+Die Ausführung unter Zuhilfenahme von Predicated Instructions ist effizienter.
+
+\newpage
+\section{Bubblesort}
+Es wurde für Debugging Zwecke mit der Rückgabe des Counters bzw. der aktuellen Vergleichsposition über rax gearbeitet, daher wird auch der modifizierte Wrapper abgegeben.
+\lstinputlisting[language=Assembler]{bubblesort.asm}
+\newpage
+\lstinputlisting[language=Assembler]{bubblesort_wrapper.c}
+\end{document} 
